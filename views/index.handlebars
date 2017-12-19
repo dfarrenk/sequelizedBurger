@@ -1,0 +1,66 @@
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <div class="jumbotron">
+                <h2 class="text-center">Eat-Da-Burger!</h2>
+                <img src="/assets/img/burger.png" class="center-block" alt="Big Burger" height="240">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Uneaten Burgers</h3>
+                </div>
+                <div class="panel-body">
+                    {{#each burgers}} {{#unless devoured}}
+                    <h3>{{burger_name}}
+                        <form action="api/burgers/{{this.id}}?_method=PUT" method="POST" style="display: inline;">
+                            <button type="submit" class="btn btn-lg"> DEVOUR </button>
+                        </form>
+                    </h3>
+                    {{/unless}} {{/each}}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Devoured Burgers</h3>
+                </div>
+                <div class="panel-body">
+                    <!--Burgers go here-->
+                    <ul class="list-group">
+                        {{#each burgers}} {{#if devoured}}
+                        <li class="list-group-item">{{burger_name}}</li>
+                        {{/if}} {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Add A Buger</h3>
+                </div>
+                <div class="panel-body">
+                    <form action="/api/burgers" method="POST" class="form-group">
+                        <label for="usr">Burger Name:</label>
+                        <input type="text" class="form-control" name="burgerName">
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
